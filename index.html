@@ -1,73 +1,175 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio أحمد أنس الفليج</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio - Ahmed Anas ALFULAYJ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1.5rem 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: #444;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            padding: 0.5rem 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        main {
+            background: #fff;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section h2 {
+            color: #333;
+            font-size: 2rem;
+            border-bottom: 2px solid #444;
+            padding-bottom: 0.5rem;
+        }
+
+        section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        section ul li {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>أحمد أنس الفليج</h1>
-        <p>طالب علوم الحاسب بجامعة الملك سعود</p>
+        <h1>Ahmed Anas ALFULAYJ</h1>
+        <p>Computer Science Student at King Saud University</p>
     </header>
     <nav>
         <ul>
-            <li><a href="#about">مقدمة</a></li>
-            <li><a href="#experience">الخبرات</a></li>
-            <li><a href="#projects">المشاريع</a></li>
-            <li><a href="#education">التعليم</a></li>
-            <li><a href="#skills">المهارات</a></li>
-            <li><a href="#contact">التواصل</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <section id="about">
-        <h2>مقدمة</h2>
-        <p>أهلاً! أنا أحمد أنس الفليج، طالب علوم الحاسب بجامعة الملك سعود. لدي شغف بتطوير البرمجيات والتعلم الآلي وتحليل البيانات.</p>
-    </section>
-    <section id="experience">
-        <h2>الخبرات</h2>
-        <ul>
-            <li>
-                <h3>تدريب في شركة ABC</h3>
-                <p>عملت كمتدرب في قسم تطوير البرمجيات حيث تعلمت كيفية العمل ضمن فريق وتطوير تطبيقات ويب باستخدام Django.</p>
-            </li>
-        </ul>
-    </section>
-    <section id="projects">
-        <h2>المشاريع</h2>
-        <ul>
-            <li>
-                <h3>مشروع XYZ</h3>
-                <p>تطوير نظام لإدارة المحتوى باستخدام تقنيات الويب الحديثة.</p>
-            </li>
-        </ul>
-    </section>
-    <section id="education">
-        <h2>التعليم</h2>
-        <ul>
-            <li>
-                <h3>جامعة الملك سعود</h3>
-                <p>بكالوريوس علوم الحاسب، متوقع التخرج في أغسطس 2024.</p>
-            </li>
-        </ul>
-    </section>
-    <section id="skills">
-        <h2>المهارات</h2>
-        <ul>
-            <li>تطوير البرمجيات</li>
-            <li>تحليل البيانات</li>
-            <li>التعلم الآلي</li>
-            <li>إدارة قواعد البيانات</li>
-        </ul>
-    </section>
-    <section id="contact">
-        <h2>التواصل</h2>
-        <p>البريد الإلكتروني: your.email@example.com</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">ملفي على LinkedIn</a></p>
-    </section>
+    <main class="container">
+        <section id="about">
+            <h2>About</h2>
+            <p>Hello! I'm Ahmed Anas ALFULAYJ, a Computer Science student at King Saud University. I have a passion for software development, machine learning, and data analysis.</p>
+        </section>
+        <section id="experience">
+            <h2>Experience</h2>
+            <ul>
+                <li>
+                    <h3>Internship at ABC Company</h3>
+                    <p>Worked as an intern in the software development department, where I learned how to work in a team and develop web applications using Django.</p>
+                </li>
+            </ul>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <ul>
+                <li>
+                    <h3>Project XYZ</h3>
+                    <p>Developing a content management system using modern web technologies.</p>
+                </li>
+            </ul>
+        </section>
+        <section id="education">
+            <h2>Education</h2>
+            <ul>
+                <li>
+                    <h3>King Saud University</h3>
+                    <p>Bachelor of Computer Science, expected graduation in August 2024.</p>
+                </li>
+            </ul>
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>Software Development</li>
+                <li>Data Analysis</li>
+                <li>Machine Learning</li>
+                <li>Database Management</li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: your.email@example.com</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">My LinkedIn Profile</a></p>
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2024 أحمد أنس الفليج. جميع الحقوق محفوظة.</p>
+        <p>&copy; 2024 Ahmed Anas ALFULAYJ. All rights reserved.</p>
     </footer>
 </body>
 </html>
