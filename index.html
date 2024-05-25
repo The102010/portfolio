@@ -1,175 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Ahmed Anas ALFULAYJ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1.5rem 0;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-
-        nav {
-            background: #444;
-            color: #fff;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline;
-            padding: 0.5rem 1rem;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        main {
-            background: #fff;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        section {
-            margin-bottom: 2rem;
-        }
-
-        section h2 {
-            color: #333;
-            font-size: 2rem;
-            border-bottom: 2px solid #444;
-            padding-bottom: 0.5rem;
-        }
-
-        section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        section ul li {
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        footer p {
-            margin: 0;
-        }
-    </style>
+    <title>Ahmed Anas Alfulayj - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
-        <h1>Ahmed Anas ALFULAYJ</h1>
-        <p>Computer Science Student at King Saud University</p>
+        <div class="container">
+            <h1>Ahmed Anas Alfulayj</h1>
+            <p class="contact-info">
+                <a href="mailto:ahmedalfulayj@gmail.com">ahmedalfulayj@gmail.com</a> |
+                Bachelor of Computer Science, King Saud University |
+                <a href="https://www.linkedin.com/in/ahmed-al-fulayj" target="_blank">LinkedIn</a>
+            </p>
+        </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+
     <main class="container">
-        <section id="about">
-            <h2>About</h2>
-            <p>Hello! I'm Ahmed Anas ALFULAYJ, a Computer Science student at King Saud University. I have a passion for software development, machine learning, and data analysis.</p>
+        <!-- Profile Section -->
+        <section id="profile">
+            <h2>Profile</h2>
+            <p>I am deeply interested in artificial intelligence, machine learning, data analysis, software development,
+                and emerging technologies. Currently, I am on track to graduate with honors in Computer Science from
+                King Saud University in August 2024. I am always ready to take on new challenges and expand my skill
+                set.</p>
         </section>
-        <section id="experience">
-            <h2>Experience</h2>
-            <ul>
-                <li>
-                    <h3>Internship at ABC Company</h3>
-                    <p>Worked as an intern in the software development department, where I learned how to work in a team and develop web applications using Django.</p>
-                </li>
-            </ul>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <ul>
-                <li>
-                    <h3>Project XYZ</h3>
-                    <p>Developing a content management system using modern web technologies.</p>
-                </li>
-            </ul>
-        </section>
-        <section id="education">
+                <!-- Projects Section -->
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="project">
+                        <h3><a href="https://path-in.com/" target="_blank">PathIn</a></h3>
+                        <p>
+                            Graduation Project - Developed an indoor navigation system for the College of Computer and
+                            Information Sciences at King Saud University using the Django framework.
+                        </p>
+                    </div>
+                    <div class="project">
+                        <h3><a href="https://klmty.pythonanywhere.com/" target="_blank">Kalmaty</a></h3>
+                        <p>Arabic Word-Guessing Game - Developed a word-guessing game using Natural Language Processing
+                            techniques and the AraVec word embedding model. In the game, users guess an Arabic word and receive
+                            feedback on the similarity between their word and the correct word. The correct word is ranked as 0,
+                            and the higher the number, the weaker the relationship between the two words.</p>
+                    </div>
+                    <div class="project">
+                        <h3><a target="_blank">Spam Detector</a></h3>
+                        <p>Achieved a 90% accuracy by training a Support Vector Machine model on only 84 samples and won first
+                            place in a competition held by the Data Science Club at the University of Jeddah.
+                        </p>
+                    </div>
+
+                </section>
+        <!-- Education Section -->
+        <!-- <section id="education">
             <h2>Education</h2>
-            <ul>
-                <li>
-                    <h3>King Saud University</h3>
-                    <p>Bachelor of Computer Science, expected graduation in August 2024.</p>
-                </li>
-            </ul>
-        </section>
+            <p><strong>Bachelor of Computer Science</strong></p>
+            <p>King Saud University, Riyadh, Saudi Arabia</p>
+            <p>2020 – 2024 (Expected Graduation: August 2024)</p>
+            <p><strong>GPA:</strong> 4.6 out of 5 (Honors Degree)</p>
+        </section> -->
+
+        <!-- Skills Section -->
         <section id="skills">
             <h2>Skills</h2>
             <ul>
-                <li>Software Development</li>
-                <li>Data Analysis</li>
-                <li>Machine Learning</li>
-                <li>Database Management</li>
+                <li><strong>Programming and Development:</strong> Java, Python, SQL, C</li>
+                <li><strong>Data Science:</strong> Data Cleaning, Pandas, NumPy, Feature Engineering</li>
+                <li><strong>Machine Learning:</strong> Scikit-learn, Linear Regression, Logistic Regression, Random
+                    Forest, Support Vector Machines, Nearest Neighbors</li>
+                <li><strong>Deep Learning:</strong> TensorFlow, Neural Networks, Convolutional Neural Networks (CNN),
+                    Installing and running private AI models (LAMA, fastText)</li>
+                <li><strong>Tools:</strong> Jupyter Notebook, Google Colab, Visual Studio Code, Eclipse, PyCharm, Excel
+                </li>
+                <li><strong>Languages:</strong> English, Arabic</li>
             </ul>
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: your.email@example.com</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">My LinkedIn Profile</a></p>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <h2>Courses</h2>
+            <ul>
+                <li>Intro to TensorFlow for Deep Learning (Google / Udacity)</li>
+                <li>Information Retrieval (King Saud University)</li>
+                <li>Machine Learning (King Saud University)</li>
+                <li>IT/Software Project Management (King Saud University)</li>
+            </ul>
         </section>
+
+
+
     </main>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Ahmed Anas ALFULAYJ. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Ahmed Anas Alfulayj. All rights reserved.</p>
+        </div>
     </footer>
 </body>
+
 </html>
