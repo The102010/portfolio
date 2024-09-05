@@ -455,6 +455,19 @@
 
             addMessageToChat(response, 'bot');
         }
+        window.onload = function() {
+    // عرض رسالة الترحيب بناءً على اللغة الافتراضية
+    addMessageToChat(messages[currentLanguage]['welcome'], 'bot');
+
+    // استمع للضغط على مفتاح Enter في حقل الإدخال
+    const inputField = document.getElementById('user-input');
+    inputField.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {  // Check if Enter key is pressed
+            sendMessage();  // Call the sendMessage function
+        }
+    });
+};
+
     </script>
 
 </body>
