@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Anas Alfulayj - Portfolio</title>
+    <style>
+        /* تنسيقات أساسية للصفحة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط يدعم اللغتين */
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    
+        header {
+            background-color: #075e54;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+    
+        .contact-info {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+    
+        .contact-info a {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+    
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    
+        main {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        section {
+            margin-bottom: 40px;
+        }
+    
+        section h2 {
+            border-bottom: 2px solid #075e54;
+            padding-bottom: 10px;
+            color: #333;
+        }
+    
+        .project, .experience {
+            margin-bottom: 20px;
+        }
+    
+        .project h3, .experience h3 {
+            margin-bottom: 5px;
+            color: #075e54;
+        }
+    
+        .project p, .experience p, ul {
+            margin: 0 0 10px 0;
+            line-height: 1.6;
+        }
+    
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #075e54;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+    
+        .chat-container {
+            display: none; /* مخفي في البداية */
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 375px;
+            height: 400px; /* تعديل الطول ليكون أقصر */
+            background-color: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            flex-direction: column;
+            overflow: hidden;
+        }
+    
+        .chat-header {
+            background-color: #075e54;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+    
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: white;
+            color: #075e54;
+            border: none;
+            border-radius: 10px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    
+        .language-switch {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background-color: white;
+            color: #075e54;
+            border: none;
+            border-radius: 10px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+    
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+    
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+    
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #075e54;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.8;
+            word-wrap: break-word; /* لتجنب تجاوز النص خارج الفقاعة */
+            white-space: pre-wrap; /* للحفاظ على الفواصل وتنسيق الأسطر */
+        }
+    
+        .chat-bubble.user {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+        }
+    
+        .chat-bubble.bot {
+            background-color: #ececec;
+            align-self: flex-start;
+        }
+    
+        /* أنماط اللغة العربية */
+        body.ar .chat-bubble {
+            direction: rtl; /* اتجاه النص من اليمين إلى اليسار */
+            text-align: right; /* محاذاة النص إلى اليمين */
+            font-family: 'Arial', sans-serif; /* خط مناسب للعربية */
+        }
+
+        body.ar .chat-bubble.bot, body.ar .chat-bubble.user {
+            text-align: right; /* تأكد من أن المحاذاة صحيحة في الرسائل */
+            direction: rtl; /* اتجاه النص للغة العربية */
+        }
+    
+        /* أنماط اللغة الإنجليزية */
+        body.en .chat-bubble {
+            direction: ltr; /* اتجاه النص من اليسار إلى اليمين */
+            text-align: left; /* محاذاة النص إلى اليسار */
+        }
+
+        /* تحسين الخط للأزرار */
+        .language-switch, .close-button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+        }
+    </style>
+        
+    </head>
+
+<body class="ar">
+    <!-- العنوان -->
+    <header>
+        <div class="container">
+            <h1>Ahmed Anas Alfulayj</h1>
+            <p class="contact-info">
+                <a href="mailto:ahmedalfulayj@gmail.com">ahmedalfulayj@gmail.com</a> |
+                Bachelor of Computer Science, King Saud University |
+                <a href="https://www.linkedin.com/in/ahmed-al-fulayj" target="_blank">LinkedIn</a>
+            </p>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container">
+        <!-- قسم الملف الشخصي -->
+        <section id="profile">
+            <h2>Profile</h2>
+            <p>
+                Skilled graduate in software development and systems analysis with a strong passion for artificial intelligence, machine learning, and data analysis. Proficient in designing and implementing innovative technical solutions to enhance system efficiency and reliability. Capable of managing multiple projects under tight deadlines and working effectively within teams to achieve optimal results. Demonstrates strong communication skills, both written and verbal, and thrives in dynamic, challenging environments.
+            </p>
+        </section>
+
+        <!-- قسم المشاريع -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3><a href="https://path-in.com/" target="_blank">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>                    <!-- أيقونة الرابط -->
+
+                    PathIn
+
+
+                </a> 
+                    (Graduation Project - Indoor Navigation)</h3>
+                <p>
+                    Developed an indoor navigation web application using Django Framework, with Python for the backend and HTML, CSS, and JavaScript for the frontend. The project was designed to help students and faculty navigate the campus more efficiently.
+                </p>
+            </div>
+            <div class="project">
+                <h3><a href="https://www.klmty.me/" target="_blank">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Kalmaty
+
+                    
+                </a> (Arabic Word-Guessing Game)</h3>
+                <p>
+                    Co-developed an Arabic word-guessing game using NLP techniques and the AraVec model. The game enhances user engagement by providing a rating system where guesses are scored based on their proximity to the hidden word, helping users refine their guesses and deepen their understanding of Arabic word associations through an interactive experience.
+                </p>
+            </div>
+            <div class="project">
+                <h3>Spam Detector</h3>
+                <p>
+                    Created a Support Vector Machine model to classify spam, achieving an accuracy rate of 90% based on a dataset of 84 samples. This project was part of a competition organized by the Data Science Club at the University of Jeddah, where it secured first place.
+                </p>
+            </div>
+        </section>
+
+        <!-- قسم المهارات -->
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li><strong>Programming and Development:</strong> Java, Python, SQL, C, Django Framework</li>
+                <li><strong>Data Science:</strong> Data Cleaning, Pandas, NumPy, Feature Engineering</li>
+                <li><strong>Machine Learning and Deep Learning:</strong> Scikit-learn, Linear Regression, Logistic Regression, Random Forest, SVM, KNN, TensorFlow, Ollama (private AI)</li>
+                <li><strong>Tools:</strong> Jupyter Notebook, Google Colab, Visual Studio Code, Eclipse, PyCharm, Excel</li>
+                <li><strong>Languages:</strong> English, Arabic</li>
+            </ul>
+        </section>
+
+        <!-- قسم الدورات -->
+        <section id="courses">
+            <h2>Courses</h2>
+            <ul>
+                <li>Intro to TensorFlow for Deep Learning (Google / Udacity)</li>
+                <li>Information Retrieval (King Saud University)</li>
+                <li>Machine Learning (King Saud University)</li>
+                <li>IT/Software Project Management (King Saud University)</li>
+            </ul>
+        </section>
+
+        <!-- قسم الخبرة العملية -->
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            <div class="experience">
+                <h3>Systems Analyst (COOP), Cenomi Centers</h3>
+                <p>June 2024 – August 2024, Riyadh, Saudi Arabia</p>
+                <ul>
+                    <li>Analyzed and resolved system anomalies, contributing to improved operational efficiency.</li>
+                    <li>Conducted system testing, leading to enhanced system reliability and user satisfaction.</li>
+                    <li>Developed bilingual user guides, increasing system accessibility and understanding across diverse user groups.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- قسم الجوائز -->
+        <section id="awards">
+            <h2>Awards</h2>
+            <ul>
+                <li>Finalist, Fourth Industrial Revolution Applications Hackathon in Logistics Sector (2024) - Advanced to the final stage as one of the top teams from over 100 teams in a competitive three-day hackathon, showcasing innovative logistics solutions alongside a talented team.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ahmed Anas Alfulayj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- الزر العائم لفتح الشات بوت -->
+    <button class="floating-button" onclick="toggleChat()">💬</button>
+
+    <!-- نافذة الشات بوت -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            Chatbot
+            <button class="close-button" onclick="toggleChat()">X</button>
+            <button class="language-switch" onclick="toggleLanguage()">EN/AR</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'ar'; // Default language
+
+        const messages = {
+    'ar': {
+        'welcome': "مرحبًا! أنا شات بوت يعرض لك معلومات من السيرة الذاتية لأحمد الفليج. يمكنك سؤالي عن 'Education' أو 'Projects' أو 'Skills' أو 'Experience' أو 'Awards'.",
+        'education': "بكالوريوس علوم الحاسب، جامعة الملك سعود. تخرجت مع مرتبة الشرف.",
+        'projects': "باث إن: تطبيق توجيه داخلي باستخدام جانغو.\nكاشف البريد المزعج: نموذج إس في إم بدقة 90%.\nكلمتي: لعبة تخمين الكلمات العربية.",
+        'skills': "جافا، بايثون، إس كيو إل، سي، إطار عمل جانغو، تنظيف البيانات، بانداس، نومباي، تنسرفلو.",
+        'experience': "محلل نظم في سينومي سنترز: تحسين كفاءة النظام، اختبار النظام، تطوير أدلة المستخدم ثنائية اللغة.",
+        'awards': "وصلت للمرحلة النهائية في هاكاثون تطبيقات الثورة الصناعية الرابعة في قطاع اللوجستيات، من بين أكثر من 100 فريق.",
+        'unknown': "لم أفهم ذلك. هل يمكنك المحاولة مرة أخرى؟",
+        'prompt': "يرجى السؤال عن 'Education'، 'Projects'، 'Skills'، 'Experience'، أو 'Awards'."
+    },
+    'en': {
+        'welcome': "Hello! I am a chatbot that provides information from Ahmed Alfulayj's resume. You can ask me about 'Education', 'Projects', 'Skills', 'Experience', or 'Awards'.",
+        'education': "Bachelor's degree in Computer Science, King Saud University. Graduated with Honors.",
+        'projects': "PathIn: Indoor navigation app using Django.\nSpam detector: SVM model with 90% accuracy.\nKalmaty: Arabic word-guessing game.",
+        'skills': "Java, Python, SQL, C, Django Framework, Data Cleaning, Pandas, NumPy, TensorFlow.",
+        'experience': "Systems Analyst at Cenomi Centers: Improved system efficiency, conducted system testing, developed bilingual user guides.",
+        'awards': "Finalist in the Fourth Industrial Revolution Applications Hackathon in the Logistics Sector, among more than 100 teams.",
+        'unknown': "I didn't understand that. Can you try something else?",
+        'prompt': "Please ask about 'Education', 'Projects', 'Skills', 'Experience', or 'Awards'."
+    }
+};
+
+        window.onload = function() {
+            // Display a welcome message based on the default language
+            addMessageToChat(messages[currentLanguage]['welcome'], 'bot');
+        };
+
+        function toggleChat() {
+            const chatContainer = document.getElementById('chat-container');
+            if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+                chatContainer.style.display = 'flex';
+            } else {
+                chatContainer.style.display = 'none';
+            }
+        }
+
+        function toggleLanguage() {
+            currentLanguage = (currentLanguage === 'ar') ? 'en' : 'ar';
+            document.body.className = currentLanguage;  // تعيين فئة اللغة على الـ body
+            document.getElementById('chat-messages').innerHTML = '';
+            addMessageToChat(messages[currentLanguage]['welcome'], 'bot');
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById('user-input');
+            const message = inputField.value.trim();
+            if (message) {
+                addMessageToChat(message, 'user');
+                inputField.value = '';
+                generateResponse(message);
+            }
+        }
+
+        function addMessageToChat(message, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageBubble = document.createElement('div');
+            messageBubble.className = `chat-bubble ${sender}`;
+            messageBubble.textContent = message;
+            chatMessages.appendChild(messageBubble);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
+        }
+
+        function generateResponse(message) {
+            let response = messages[currentLanguage]['unknown'];
+
+            switch(message.toLowerCase()) {
+                case 'education':
+                    response = messages[currentLanguage]['education'];
+                    break;
+                case 'projects':
+                    response = messages[currentLanguage]['projects'];
+                    break;
+                case 'skills':
+                    response = messages[currentLanguage]['skills'];
+                    break;
+                case 'experience':
+                    response = messages[currentLanguage]['experience'];
+                    break;
+                case 'awards':
+                    response = messages[currentLanguage]['awards'];
+                    break;
+                default:
+                    response = messages[currentLanguage]['prompt'];
+            }
+
+            addMessageToChat(response, 'bot');
+        }
+    </script>
+
+</body>
+
+</html>
