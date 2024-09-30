@@ -535,10 +535,15 @@
             const floatingButton = document.getElementById('floating-button');
             floatingButton.classList.add('animate-pulse');
 
+            // إضافة مستمع للنقر على الزر
+            floatingButton.addEventListener('click', toggleChat);
+
             // بدء مؤقت لإيقاف أنميشن الجذب بعد 5 ثوانٍ
             pulseTimeout = setTimeout(() => {
-                floatingButton.classList.remove('animate-pulse');
-                animationStopped = true;
+                if (!animationStopped) {
+                    floatingButton.classList.remove('animate-pulse');
+                    animationStopped = true;
+                }
             }, 5000);
         };
 
