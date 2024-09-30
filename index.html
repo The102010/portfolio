@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -15,40 +15,64 @@
             margin: 0;
             padding: 0;
         }
-    
+
         .container {
             width: 80%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-    
+
         header {
             background-color: #075e54;
             color: white;
-            padding: 20px 0;
+            padding: 15px 0;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-    
+
         header h1 {
             margin: 0;
             font-size: 2.5em;
+            transition: font-size 0.3s ease;
         }
-    
+
         .contact-info {
             margin-top: 10px;
             font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: opacity 0.3s ease, font-size 0.3s ease;
         }
-    
-        .contact-info a {
+
+        .contact-info a,
+        .contact-info span {
             color: #f9f9f9;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
         }
-    
-        .contact-info a:hover {
+
+        .contact-info a:hover,
+        .contact-info span:hover {
             text-decoration: underline;
         }
-    
+
+        .contact-info i {
+            margin-right: 5px;
+        }
+
+        .contact-info .separator {
+            margin: 0 10px;
+            color: #f9f9f9;
+        }
+
         main {
             background-color: white;
             padding: 20px;
@@ -56,31 +80,35 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-    
+
         section {
             margin-bottom: 40px;
         }
-    
+
         section h2 {
             border-bottom: 2px solid #075e54;
             padding-bottom: 10px;
             color: #333;
         }
-    
-        .project, .experience {
+
+        .project,
+        .experience {
             margin-bottom: 20px;
         }
-    
-        .project h3, .experience h3 {
+
+        .project h3,
+        .experience h3 {
             margin-bottom: 5px;
             color: #075e54;
         }
-    
-        .project p, .experience p, ul {
+
+        .project p,
+        .experience p,
+        ul {
             margin: 0 0 10px 0;
             line-height: 1.6;
         }
-    
+
         footer {
             background-color: #333;
             color: white;
@@ -90,7 +118,7 @@
             bottom: 0;
             width: 100%;
         }
-    
+
         .floating-button {
             position: fixed;
             bottom: 20px;
@@ -108,15 +136,58 @@
             align-items: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            /* الأنميشن الافتراضي سيضاف عبر JavaScript */
         }
-    
+
+        /* تعريف أنميشن جذب الانتباه */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* تعريف أنميشن الضغط */
+        @keyframes buttonClickAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .animate-once {
+            animation: buttonClickAnimation 0.6s ease;
+        }
+
         .chat-container {
             display: none; /* مخفي في البداية */
             position: fixed;
             bottom: 100px;
             right: 20px;
             width: 375px;
-            height: 400px; /* تعديل الطول ليكون أقصر */
+            height: 400px;
             background-color: #ffffff;
             border-radius: 25px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -124,7 +195,7 @@
             flex-direction: column;
             overflow: hidden;
         }
-    
+
         .chat-header {
             background-color: #075e54;
             color: white;
@@ -133,7 +204,7 @@
             font-weight: bold;
             position: relative;
         }
-    
+
         .close-button {
             position: absolute;
             right: 10px;
@@ -145,7 +216,7 @@
             padding: 5px;
             cursor: pointer;
         }
-    
+
         .language-switch {
             position: absolute;
             left: 10px;
@@ -157,19 +228,19 @@
             padding: 5px;
             cursor: pointer;
         }
-    
+
         .chat-messages {
             flex: 1;
             padding: 10px;
             overflow-y: auto;
         }
-    
+
         .chat-input {
             display: flex;
             padding: 10px;
             border-top: 1px solid #ddd;
         }
-    
+
         .chat-input input {
             flex: 1;
             padding: 10px;
@@ -177,7 +248,7 @@
             border-radius: 20px;
             margin-right: 10px;
         }
-    
+
         .chat-input button {
             padding: 10px 20px;
             background-color: #075e54;
@@ -186,7 +257,7 @@
             border-radius: 20px;
             cursor: pointer;
         }
-    
+
         .chat-bubble {
             max-width: 80%;
             padding: 10px;
@@ -195,56 +266,117 @@
             position: relative;
             font-size: 14px;
             line-height: 1.8;
-            word-wrap: break-word; /* لتجنب تجاوز النص خارج الفقاعة */
-            white-space: pre-wrap; /* للحفاظ على الفواصل وتنسيق الأسطر */
+            word-wrap: break-word;
+            white-space: pre-wrap;
         }
-    
+
         .chat-bubble.user {
             background-color: #dcf8c6;
             align-self: flex-end;
         }
-    
+
         .chat-bubble.bot {
             background-color: #ececec;
             align-self: flex-start;
         }
-    
+
         /* أنماط اللغة العربية */
         body.ar .chat-bubble {
-            direction: rtl; /* اتجاه النص من اليمين إلى اليسار */
-            text-align: right; /* محاذاة النص إلى اليمين */
-            font-family: 'Arial', sans-serif; /* خط مناسب للعربية */
+            direction: rtl;
+            text-align: right;
+            font-family: 'Arial', sans-serif;
         }
 
-        body.ar .chat-bubble.bot, body.ar .chat-bubble.user {
-            text-align: right; /* تأكد من أن المحاذاة صحيحة في الرسائل */
-            direction: rtl; /* اتجاه النص للغة العربية */
+        body.ar .chat-bubble.bot,
+        body.ar .chat-bubble.user {
+            text-align: right;
+            direction: rtl;
         }
-    
+
         /* أنماط اللغة الإنجليزية */
         body.en .chat-bubble {
-            direction: ltr; /* اتجاه النص من اليسار إلى اليمين */
-            text-align: left; /* محاذاة النص إلى اليسار */
+            direction: ltr;
+            text-align: left;
         }
 
         /* تحسين الخط للأزرار */
-        .language-switch, .close-button {
+        .language-switch,
+        .close-button {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 14px;
         }
+
+        /* تأثير التصغير عند النزول - يطبق فقط على الشاشات الصغيرة */
+        @media screen and (max-width: 767px) {
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                transition: all 0.3s ease;
+                padding: 8px 0;
+            }
+
+            header h1 {
+                transition: font-size 0.3s ease;
+            }
+
+            .contact-info {
+                transition: opacity 0.3s ease, font-size 0.3s ease;
+            }
+
+            header.minimized {
+                padding: 5px 0;
+            }
+
+            header.minimized h1 {
+                font-size: 1.8em;
+            }
+
+            header.minimized .contact-info {
+                font-size: 0.9em;
+            }
+
+            /* إخفاء النص والفواصل عند النزول */
+            header.minimized .contact-info .text,
+            header.minimized .contact-info .separator {
+                opacity: 0;
+                width: 0;
+                overflow: hidden;
+                transition: opacity 0.3s ease, width 0.3s ease;
+            }
+
+            /* ضبط المسافات بين الأيقونات عند اختفاء النص */
+            header.minimized .contact-info a,
+            header.minimized span {
+                margin: 0 5px;
+            }
+
+            /* جعل الأيقونات بجانب بعضها */
+            header.minimized .contact-info {
+                justify-content: center;
+            }
+        }
     </style>
-        
-    </head>
+
+</head>
 
 <body class="ar">
     <!-- العنوان -->
     <header>
-        <div class="container">
+        <div class="main-header">
             <h1>Ahmed Anas Alfulayj</h1>
             <p class="contact-info">
-                <a href="mailto:ahmedalfulayj@gmail.com">ahmedalfulayj@gmail.com</a> |
-                Bachelor of Computer Science, King Saud University |
-                <a href="https://www.linkedin.com/in/ahmed-al-fulayj" target="_blank">LinkedIn</a>
+                <a href="mailto:ahmedalfulayj@gmail.com">
+                    <i class="fa-solid fa-envelope"></i> <span class="text">ahmedalfulayj@gmail.com</span>
+                </a>
+                <span class="separator">|</span>
+                <span>
+                    <i class="fa-solid fa-laptop-code"></i> <span class="text">Bachelor of Computer Science from KSU</span>
+                </span>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/ahmed-al-fulayj" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i> <span class="text">LinkedIn</span>
+                </a>
             </p>
         </div>
     </header>
@@ -264,12 +396,9 @@
             <h2>Projects</h2>
             <div class="project">
                 <h3><a href="https://path-in.com/" target="_blank">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>                    <!-- أيقونة الرابط -->
-
-                    PathIn
-
-
-                </a> 
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        PathIn
+                    </a>
                     (Graduation Project - Indoor Navigation)</h3>
                 <p>
                     Developed an indoor navigation web application using Django Framework, with Python for the backend and HTML, CSS, and JavaScript for the frontend. The project was designed to help students and faculty navigate the campus more efficiently.
@@ -277,11 +406,9 @@
             </div>
             <div class="project">
                 <h3><a href="https://www.klmty.me/" target="_blank">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Kalmaty
-
-                    
-                </a> (Arabic Word-Guessing Game)</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Kalmaty
+                    </a> (Arabic Word-Guessing Game)</h3>
                 <p>
                     Co-developed an Arabic word-guessing game using NLP techniques and the AraVec model. The game enhances user engagement by providing a rating system where guesses are scored based on their proximity to the hidden word, helping users refine their guesses and deepen their understanding of Arabic word associations through an interactive experience.
                 </p>
@@ -348,7 +475,7 @@
     </footer>
 
     <!-- الزر العائم لفتح الشات بوت -->
-    <button class="floating-button" onclick="toggleChat()">💬</button>
+    <button class="floating-button" id="floating-button">💬</button>
 
     <!-- نافذة الشات بوت -->
     <div class="chat-container" id="chat-container">
@@ -365,48 +492,90 @@
     </div>
 
     <script>
-        let currentLanguage = 'ar'; // Default language
+        let currentLanguage = 'ar'; // اللغة الافتراضية
+        let animationStopped = false; // متغير لتعقب ما إذا كانت الأنميشن قد تم إيقافها
+        let pulseTimeout; // متغير لتخزين معرف المؤقت
 
         const messages = {
-    'ar': {
-        'welcome': "مرحبًا! أنا شات بوت يعرض لك معلومات من السيرة الذاتية لأحمد الفليج. يمكنك سؤالي عن 'Education' أو 'Projects' أو 'Skills' أو 'Experience' أو 'Awards'.",
-        'education': "بكالوريوس علوم الحاسب، جامعة الملك سعود. تخرجت مع مرتبة الشرف.",
-        'projects': "باث إن: تطبيق توجيه داخلي باستخدام جانغو.\nكاشف البريد المزعج: نموذج إس في إم بدقة 90%.\nكلمتي: لعبة تخمين الكلمات العربية.",
-        'skills': "جافا، بايثون، إس كيو إل، سي، إطار عمل جانغو، تنظيف البيانات، بانداس، نومباي، تنسرفلو.",
-        'experience': "محلل نظم في سينومي سنترز: تحسين كفاءة النظام، اختبار النظام، تطوير أدلة المستخدم ثنائية اللغة.",
-        'awards': "وصلت للمرحلة النهائية في هاكاثون تطبيقات الثورة الصناعية الرابعة في قطاع اللوجستيات، من بين أكثر من 100 فريق.",
-        'unknown': "لم أفهم ذلك. هل يمكنك المحاولة مرة أخرى؟",
-        'prompt': "يرجى السؤال عن 'Education'، 'Projects'، 'Skills'، 'Experience'، أو 'Awards'."
-    },
-    'en': {
-        'welcome': "Hello! I am a chatbot that provides information from Ahmed Alfulayj's resume. You can ask me about 'Education', 'Projects', 'Skills', 'Experience', or 'Awards'.",
-        'education': "Bachelor's degree in Computer Science, King Saud University. Graduated with Honors.",
-        'projects': "PathIn: Indoor navigation app using Django.\nSpam detector: SVM model with 90% accuracy.\nKalmaty: Arabic word-guessing game.",
-        'skills': "Java, Python, SQL, C, Django Framework, Data Cleaning, Pandas, NumPy, TensorFlow.",
-        'experience': "Systems Analyst at Cenomi Centers: Improved system efficiency, conducted system testing, developed bilingual user guides.",
-        'awards': "Finalist in the Fourth Industrial Revolution Applications Hackathon in the Logistics Sector, among more than 100 teams.",
-        'unknown': "I didn't understand that. Can you try something else?",
-        'prompt': "Please ask about 'Education', 'Projects', 'Skills', 'Experience', or 'Awards'."
-    }
-};
+            'ar': {
+                'welcome': "مرحبًا! أنا شات بوت يعرض لك معلومات من السيرة الذاتية لأحمد الفليج. يمكنك سؤالي عن 'Education' أو 'Projects' أو 'Skills' أو 'Experience' أو 'Awards'.",
+                'education': "بكالوريوس علوم الحاسب، جامعة الملك سعود. تخرجت مع مرتبة الشرف.",
+                'projects': "باث إن: تطبيق توجيه داخلي باستخدام جانغو.\nكاشف البريد المزعج: نموذج إس في إم بدقة 90%.\nكلمتي: لعبة تخمين الكلمات العربية.",
+                'skills': "جافا، بايثون، إس كيو إل، سي، إطار عمل جانغو، تنظيف البيانات، بانداس، نومباي، تنسرفلو.",
+                'experience': "محلل نظم في سينومي سنترز: تحسين كفاءة النظام، اختبار النظام، تطوير أدلة المستخدم ثنائية اللغة.",
+                'awards': "وصلت للمرحلة النهائية في هاكاثون تطبيقات الثورة الصناعية الرابعة في قطاع اللوجستيات، من بين أكثر من 100 فريق.",
+                'unknown': "لم أفهم ذلك. هل يمكنك المحاولة مرة أخرى؟",
+                'prompt': "يرجى السؤال عن 'Education'، 'Projects'، 'Skills'، 'Experience'، أو 'Awards'."
+            },
+            'en': {
+                'welcome': "Hello! I am a chatbot that provides information from Ahmed Alfulayj's resume. You can ask me about 'Education', 'Projects', 'Skills', 'Experience', or 'Awards'.",
+                'education': "Bachelor's degree in Computer Science, King Saud University. Graduated with Honors.",
+                'projects': "PathIn: Indoor navigation app using Django.\nSpam detector: SVM model with 90% accuracy.\nKalmaty: Arabic word-guessing game.",
+                'skills': "Java, Python, SQL, C, Django Framework, Data Cleaning, Pandas, NumPy, TensorFlow.",
+                'experience': "Systems Analyst at Cenomi Centers: Improved system efficiency, conducted system testing, developed bilingual user guides.",
+                'awards': "Finalist in the Fourth Industrial Revolution Applications Hackathon in the Logistics Sector, among more than 100 teams.",
+                'unknown': "I didn't understand that. Can you try something else?",
+                'prompt': "Please ask about 'Education', 'Projects', 'Skills', 'Experience', or 'Awards'."
+            }
+        };
 
-        window.onload = function() {
-            // Display a welcome message based on the default language
+        window.onload = function () {
+            // عرض رسالة الترحيب بناءً على اللغة الافتراضية
             addMessageToChat(messages[currentLanguage]['welcome'], 'bot');
+
+            // استمع للضغط على مفتاح Enter في حقل الإدخال
+            const inputField = document.getElementById('user-input');
+            inputField.addEventListener('keydown', function (event) {
+                if (event.key === "Enter") {
+                    sendMessage();
+                }
+            });
+
+            // بدء أنميشن الجذب
+            const floatingButton = document.getElementById('floating-button');
+            floatingButton.classList.add('animate-pulse');
+
+            // بدء مؤقت لإيقاف أنميشن الجذب بعد 5 ثوانٍ
+            pulseTimeout = setTimeout(() => {
+                floatingButton.classList.remove('animate-pulse');
+                animationStopped = true;
+            }, 5000);
         };
 
         function toggleChat() {
             const chatContainer = document.getElementById('chat-container');
+            const floatingButton = document.getElementById('floating-button');
+
             if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
                 chatContainer.style.display = 'flex';
             } else {
                 chatContainer.style.display = 'none';
             }
+
+            // إذا لم يتم إيقاف الأنميشن بعد
+            if (!animationStopped) {
+                // إزالة أنميشن الجذب
+                floatingButton.classList.remove('animate-pulse');
+
+                // إيقاف المؤقت لمنع إزالة الأنميشن مرة أخرى
+                clearTimeout(pulseTimeout);
+
+                // تعيين متغير أنميشن متوقف
+                animationStopped = true;
+
+                // إضافة أنميشن الضغط
+                floatingButton.classList.add('animate-once');
+
+                // إزالة فئة الأنميشن بعد انتهاء الأنميشن لتجنب تكراره
+                floatingButton.addEventListener('animationend', function () {
+                    floatingButton.classList.remove('animate-once');
+                }, { once: true });
+            }
         }
 
         function toggleLanguage() {
             currentLanguage = (currentLanguage === 'ar') ? 'en' : 'ar';
-            document.body.className = currentLanguage;  // تعيين فئة اللغة على الـ body
+            document.body.className = currentLanguage;
             document.getElementById('chat-messages').innerHTML = '';
             addMessageToChat(messages[currentLanguage]['welcome'], 'bot');
         }
@@ -433,7 +602,7 @@
         function generateResponse(message) {
             let response = messages[currentLanguage]['unknown'];
 
-            switch(message.toLowerCase()) {
+            switch (message.toLowerCase()) {
                 case 'education':
                     response = messages[currentLanguage]['education'];
                     break;
@@ -455,29 +624,29 @@
 
             addMessageToChat(response, 'bot');
         }
-        window.onload = function() {
-    // عرض رسالة الترحيب بناءً على اللغة الافتراضية
-    addMessageToChat(messages[currentLanguage]['welcome'], 'bot');
-
-    // استمع للضغط على مفتاح Enter في حقل الإدخال
-    const inputField = document.getElementById('user-input');
-    inputField.addEventListener('keydown', function(event) {
-        if (event.key === "Enter") {  // Check if Enter key is pressed
-            sendMessage();  // Call the sendMessage function
-        }
-    });
-};
-
     </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-13E82D2S9X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13E82D2S9X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-13E82D2S9X');
-</script>
+        gtag('config', 'G-13E82D2S9X');
+    </script>
+
+    <script>
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('minimized');
+            } else {
+                header.classList.remove('minimized');
+            }
+        });
+    </script>
+
 </body>
 
 </html>
